@@ -1,0 +1,76 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainWrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.formWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.listWrapper{
+  width: 70vw;
+}
+
+.formContainer{
+  width: 30vw;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sortWrapper{
+  display: flex;
+}
+#dateInputEnd, #sortInputValue{
+  margin-left: 5px;
+}
+
+#dateInputStart, #sortInputType{
+  margin-right: 5px;
+}
+
+.inputIdMessage{
+  padding-top: 5px;
+  font-size: medium;
+  color: rgb(158, 61, 61);
+}
+
+input, select{
+  display: inline;
+  width: 100%;
+  height: calc(2.2rem + 1px);
+  border: 2px solid #d7d7d7;
+  background-color: white;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  color: #212529;
+  opacity: 0.4;
+}
+
+input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(28, 28, 28, 0.25);
+}
