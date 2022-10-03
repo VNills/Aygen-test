@@ -1,49 +1,53 @@
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.mainWrapper{
+.mainWrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.formWrapper{
+.formWrapper {
   display: flex;
   justify-content: center;
 }
 
-.listWrapper{
+.listWrapper {
   width: 70vw;
 }
 
-.formContainer{
+.formContainer {
   width: 30vw;
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.sortWrapper{
+.sortWrapper {
   display: flex;
 }
-#dateInputEnd, #sortInputValue{
+
+#dateInputEnd,
+#sortInputValue {
   margin-left: 5px;
 }
 
-#dateInputStart, #sortInputType{
+#dateInputStart,
+#sortInputType {
   margin-right: 5px;
 }
 
-.inputIdMessage{
+.inputIdMessage {
   padding-top: 5px;
   font-size: medium;
   color: rgb(158, 61, 61);
 }
 
-input, select{
+input,
+select {
   display: inline;
   width: 100%;
   height: calc(2.2rem + 1px);
@@ -53,7 +57,7 @@ input, select{
   font-family: inherit;
   font-size: 1.3rem;
   font-weight: 500;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 input::-webkit-outer-spin-button,
@@ -73,4 +77,38 @@ input:focus {
   border-color: #bdbdbd;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(28, 28, 28, 0.25);
+}
+
+@media (max-width: 850px) {
+  .mainWrapper {
+    flex-direction: column;
+  }
+
+  .listWrapper {
+    width: 100vw;
+  }
+
+  .formContainer {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 350px) {
+  .sortWrapper {
+    flex-direction: column;
+  }
+
+  #dateInputEnd,
+  #sortInputValue {
+    margin-left: 0px;
+  }
+
+  #dateInputStart,
+  #sortInputType {
+    margin-right: 0px;
+  }
+
+  .formContainer {
+    margin: 1px;
+  }
 }

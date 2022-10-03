@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   const [documents, setDocuments] = useState<IDocument[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(15);
+  const [currentPage, setCurrentPage] = useState<number>(60);
   const [fetching, setFetching] = useState<boolean>(true);
   const [idSearch, setIdSearch] = useState<string>("");
   const [dateStart, setDateStart] = useState<string>("");
@@ -24,7 +24,7 @@ function App() {
         )
         .then((response) => {
           setDocuments([...documents, ...response.data]);
-          setCurrentPage((prevState) => prevState + 15);
+          setCurrentPage((prevState) => prevState + 60);
         })
         .finally(() => setFetching(false));
     }
@@ -48,13 +48,13 @@ function App() {
   };
 
   const filteredDocuments = documents
-  .filter((doc) => {
-    if(idSearch === doc.id.toString()){
-      return doc.id.toString().includes(idSearch);
-    } else if(idSearch.length === 0){
-      return doc.id.toString().includes(idSearch);
-    }
-  })
+    .filter((doc) => {
+      if (idSearch === doc.id.toString()) {
+        return doc.id.toString().includes(idSearch);
+      } else if (idSearch.length === 0) {
+        return doc.id.toString().includes(idSearch);
+      }
+    })
     .filter((doc) => {
       return doc.title.toLowerCase().includes(titleSearch);
     })
@@ -72,10 +72,6 @@ function App() {
         return Date.parse(doc.date.substring(0, 10)) < Date.parse(dateEnd);
       }
     });
-   
-
-    console.log(filteredDocuments);
-    
 
   const handleSorting = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const documentCopy = [...documents];
@@ -116,31 +112,38 @@ function App() {
           <form className="formContainer">
             <label htmlFor="idInput">
               <h2>ID Документа</h2>
-              <input type="number" id="idInput" onChange={handleIdSearchId}/>
-              {disabledInput ? <div className="inputIdMessage">Если заполнено поле <strong>ID документа</strong>, все остальные поля проигнорированы</div> : ''}
+              <input type="number" id="idInput" onChange={handleIdSearchId} />
+              {disabledInput ? (
+                <div className="inputIdMessage">
+                  Если заполнено поле <strong>ID документа</strong>, все
+                  остальные поля проигнорированы
+                </div>
+              ) : (
+                ""
+              )}
             </label>
             <label htmlFor="dateInputStart">
               <h2>Создан</h2>
               <div className="sortWrapper">
-              <input
-                type="date"
-                id="dateInputStart"
-                onChange={(e) => setDateStart(e.target.value)}
-                disabled={disabledInput}
-              />
-              <input
-                type="date"
-                id="dateInputEnd"
-                onChange={(e) => setDateEnd(e.target.value)}
-                disabled={disabledInput}
-              />
+                <input
+                  type="date"
+                  id="dateInputStart"
+                  onChange={(e) => setDateStart(e.target.value)}
+                  disabled={disabledInput}
+                />
+                <input
+                  type="date"
+                  id="dateInputEnd"
+                  onChange={(e) => setDateEnd(e.target.value)}
+                  disabled={disabledInput}
+                />
               </div>
             </label>
             <label htmlFor="titleInput">
               <h2>Название документа</h2>
               <input
                 type="text"
-                id="titleInput" 
+                id="titleInput"
                 onChange={(e) => setTitleSearch(e.target.value)}
                 disabled={disabledInput}
               />
@@ -148,28 +151,28 @@ function App() {
             <label htmlFor="sortInputType">
               <h2>Сортировка</h2>
               <div className="sortWrapper">
-              <select
-                id="sortInputType"
-                onChange={(e) => setTypeOfSort(e.target.value)}
-                disabled={disabledInput}
-              >
-                <option value="" selected>
-                  -выбрать-
-                </option>
-                <option value="dateSort">по дате</option>
-                <option value="wordsSort">по алфавиту</option>
-              </select>
-              <select
-                id="sortInputValue"
-                onChange={handleSorting}
-                disabled={disabledInput}
-              >
-                <option value="" selected>
-                  -выбрать-
-                </option>
-                <option value="upToDown">по возрастанию</option>
-                <option value="downToUp">по убыванию</option>
-              </select>
+                <select
+                  id="sortInputType"
+                  onChange={(e) => setTypeOfSort(e.target.value)}
+                  disabled={disabledInput}
+                >
+                  <option value="" selected>
+                    -выбрать-
+                  </option>
+                  <option value="dateSort">по дате</option>
+                  <option value="wordsSort">по алфавиту</option>
+                </select>
+                <select
+                  id="sortInputValue"
+                  onChange={handleSorting}
+                  disabled={disabledInput}
+                >
+                  <option value="" selected>
+                    -выбрать-
+                  </option>
+                  <option value="upToDown">по возрастанию</option>
+                  <option value="downToUp">по убыванию</option>
+                </select>
               </div>
             </label>
           </form>

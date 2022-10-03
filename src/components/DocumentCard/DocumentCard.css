@@ -1,4 +1,4 @@
-.documentCard{
+.documentCard {
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -6,7 +6,7 @@
   border-radius: 4px;
 }
 
-.documentTitle{
+.documentTitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,16 +17,16 @@
   cursor: pointer;
 }
 
-.documentBody{
+.documentBody {
   padding: 15px;
   font-size: 30px;
 }
 
-.documentBodyWindow{
+.documentBodyWindow {
   cursor: pointer;
 }
 
-.documentInfoContainer{
+.documentInfoContainer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
