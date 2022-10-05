@@ -20,7 +20,7 @@ function App() {
     if (fetching) {
       axios
         .get<IDocument[]>(
-          `http://www.filltext.com/?rows=${currentPage}&id={index}&date={date|01-01-2010,10-12-2022}&title={lorem|3}&body={lorem|20}&pretty=true`
+          `http://www.filltext.com/?rows=${currentPage}&id={index}&date={date|01-01-1990,10-12-2022}&title={lorem|3}&body={lorem|20}&pretty=true`
         )
         .then((response) => {
           setDocuments([...documents, ...response.data]);
@@ -97,7 +97,9 @@ function App() {
 
   const handleIdSearchId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIdSearch(e.target.value);
-    if (e.target.value.length > 0) {
+    if (e.target.value.length > e.target.maxLength) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    } else if (e.target.value.length > 0) {
       setDisabledInput(true);
     } else if (e.target.value.length === 0) {
       setDisabledInput(false);
@@ -112,7 +114,12 @@ function App() {
           <form className="formContainer">
             <label htmlFor="idInput">
               <h2>ID Документа</h2>
-              <input type="number" id="idInput" onChange={handleIdSearchId} />
+              <input
+                type="number"
+                id="idInput"
+                maxLength={6}
+                onChange={handleIdSearchId}
+              />
               {disabledInput ? (
                 <div className="inputIdMessage">
                   Если заполнено поле <strong>ID документа</strong>, все
@@ -144,6 +151,7 @@ function App() {
               <input
                 type="text"
                 id="titleInput"
+                maxLength={30}
                 onChange={(e) => setTitleSearch(e.target.value)}
                 disabled={disabledInput}
               />
